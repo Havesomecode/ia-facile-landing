@@ -12,6 +12,10 @@ It is intentionally separate from any production landing page. Its job is to com
 - `npm run build`: type-check and build the Vite overview page
 - `npm run lint`: run ESLint
 
+## Public Review Link
+
+- Storybook preview: `https://skill-deploy-zupylj7ho8-codex-agent-deploys.vercel.app`
+
 ## Shared Contract
 
 Every visual direction in this workspace should:
