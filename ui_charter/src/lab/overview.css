@@ -1,0 +1,134 @@
+.charter-shell {
+  min-height: 100vh;
+  padding: 3rem 1.5rem 4rem;
+}
+
+.charter-hero,
+.charter-section {
+  max-width: 76rem;
+  margin: 0 auto;
+}
+
+.charter-hero {
+  padding-bottom: 3rem;
+  border-bottom: 1px solid var(--charter-rule);
+}
+
+.charter-eyebrow,
+.charter-label,
+.charter-note-kicker {
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--charter-accent-strong);
+}
+
+.charter-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(16rem, 0.9fr);
+  gap: 2rem;
+  align-items: start;
+  margin-top: 1rem;
+}
+
+.charter-hero h1,
+.charter-section h2,
+.charter-direction-item h3 {
+  margin: 0;
+  font-family: var(--charter-serif);
+  font-weight: 600;
+  line-height: 1;
+}
+
+.charter-hero h1 {
+  max-width: 12ch;
+  font-size: clamp(3rem, 7vw, 5.8rem);
+  letter-spacing: -0.04em;
+}
+
+.charter-lead {
+  max-width: 42rem;
+  margin: 1.5rem 0 0;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--charter-muted);
+}
+
+.charter-note {
+  padding: 1rem 0 0 1rem;
+  border-left: 1px solid var(--charter-rule);
+  color: var(--charter-muted);
+}
+
+.charter-note p:last-child {
+  margin-bottom: 0;
+}
+
+.charter-section {
+  padding: 2.5rem 0 0;
+}
+
+.charter-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem;
+}
+
+.charter-section h2 {
+  font-size: clamp(2rem, 4vw, 3.1rem);
+  letter-spacing: -0.03em;
+  margin-bottom: 1rem;
+}
+
+.charter-section ul {
+  margin: 0;
+  padding-left: 1.2rem;
+  color: var(--charter-muted);
+}
+
+.charter-section li + li {
+  margin-top: 0.6rem;
+}
+
+.charter-section-heading {
+  display: grid;
+  gap: 0.75rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--charter-rule);
+}
+
+.charter-direction-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+  padding-top: 1.5rem;
+}
+
+.charter-direction-item {
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--charter-rule);
+}
+
+.charter-direction-item h3 {
+  margin-top: 0.65rem;
+  font-size: 1.7rem;
+  letter-spacing: -0.03em;
+}
+
+.charter-direction-item p:last-child {
+  color: var(--charter-muted);
+}
+
+@media (max-width: 900px) {
+  .charter-hero-grid,
+  .charter-grid,
+  .charter-direction-list {
+    grid-template-columns: 1fr;
+  }
+
+  .charter-shell {
+    padding-inline: 1rem;
+  }
+}
