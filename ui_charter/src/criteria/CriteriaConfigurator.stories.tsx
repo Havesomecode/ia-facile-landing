@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { CriteriaConfiguratorPage, type CriteriaConfiguratorPageProps } from './CriteriaConfiguratorPage';
 import { criteriaPresets } from './criteriaPresets';
+import { steeringCriteria } from './criteriaData';
 
 function argsFromPreset(slug: string): CriteriaConfiguratorPageProps {
   const preset = criteriaPresets.find((entry) => entry.slug === slug);
@@ -23,29 +24,71 @@ function argsFromPreset(slug: string): CriteriaConfiguratorPageProps {
   };
 }
 
-const fitControl = {
-  control: 'inline-radio',
-  options: ['strong', 'medium', 'weak'],
-} as const;
+const fitOptions = ['strong', 'medium', 'weak'] as const;
+
+function getCriterion(slug: string) {
+  const criterion = steeringCriteria.find((entry) => entry.slug === slug);
+
+  if (!criterion) {
+    throw new Error(`Unknown criterion: ${slug}`);
+  }
+
+  return criterion;
+}
+
+function fitControl(slug: string) {
+  const criterion = getCriterion(slug);
+
+  return {
+    control: {
+      type: 'select',
+      labels: Object.fromEntries(criterion.options.map((option) => [option.fit, option.name])),
+    },
+    options: fitOptions,
+    description: criterion.question,
+  } as const;
+}
+
+function presetStory(slug: string): Story {
+  const preset = criteriaPresets.find((entry) => entry.slug === slug);
+
+  if (!preset) {
+    throw new Error(`Unknown preset: ${slug}`);
+  }
+
+  return {
+    args: argsFromPreset(slug),
+    parameters: {
+      docs: {
+        description: {
+          story: preset.summary,
+        },
+      },
+    },
+  };
+}
 
 const meta = {
   title: 'Criteria/Configurator',
   component: CriteriaConfiguratorPage,
   parameters: {
     layout: 'fullscreen',
+    controls: {
+      expanded: true,
+    },
   },
   args: argsFromPreset('vision-core'),
   argTypes: {
-    composition: fitControl,
-    surfaceLanguage: fitControl,
-    cornersAndGeometry: fitControl,
-    typography: fitControl,
-    colorAndContrast: fitControl,
-    rhythmAndSpacing: fitControl,
-    hierarchyAndSignposting: fitControl,
-    imageryAndIllustration: fitControl,
-    ctaLanguageAndShape: fitControl,
-    motionAndInteractionFeel: fitControl,
+    composition: fitControl('composition'),
+    surfaceLanguage: fitControl('surface-language'),
+    cornersAndGeometry: fitControl('corners-and-geometry'),
+    typography: fitControl('typography'),
+    colorAndContrast: fitControl('color-and-contrast'),
+    rhythmAndSpacing: fitControl('rhythm-and-spacing'),
+    hierarchyAndSignposting: fitControl('hierarchy-and-signposting'),
+    imageryAndIllustration: fitControl('imagery-and-illustration'),
+    ctaLanguageAndShape: fitControl('cta-language-and-shape'),
+    motionAndInteractionFeel: fitControl('motion-and-interaction-feel'),
   },
 } satisfies Meta<typeof CriteriaConfiguratorPage>;
 
@@ -56,18 +99,18 @@ type Story = StoryObj<typeof meta>;
 export const Playground: Story = {
 };
 
-export const VisionCore: Story = {
-  args: argsFromPreset('vision-core'),
-};
+export const VisionCore: Story = presetStory('vision-core');
 
-export const EditorialLift: Story = {
-  args: argsFromPreset('editorial-lift'),
-};
+export const EditorialLift: Story = presetStory('editorial-lift');
 
-export const ServiceClarity: Story = {
-  args: argsFromPreset('service-clarity'),
-};
+export const ServiceClarity: Story = presetStory('service-clarity');
 
-export const PourLesNulsReference: Story = {
-  args: argsFromPreset('pour-les-nuls-reference'),
-};
+export const StructuredEditorialAuthority: Story = presetStory('structured-editorial-authority');
+
+export const NoNonsenseServiceDesk: Story = presetStory('no-nonsense-service-desk');
+
+export const WarmButDisciplined: Story = presetStory('warm-but-disciplined');
+
+export const PourLesNulsReference: Story = presetStory('pour-les-nuls-reference');
+
+export const SoftStartupRelapse: Story = presetStory('soft-startup-relapse');
