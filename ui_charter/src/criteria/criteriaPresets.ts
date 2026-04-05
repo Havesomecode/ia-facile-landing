@@ -57,6 +57,24 @@ export const criteriaPresets: CriteriaPreset[] = [
       'motion-and-interaction-feel': 'strong',
     }),
   },
+  {
+    slug: 'pour-les-nuls-reference',
+    title: 'Pour les Nuls reference',
+    summary:
+      'Reference de contraste: plus didactique, plus mass-market, plus demonstrative. Utile pour voir ce que gagne une direction tres beginner-friendly, et ce qu elle perd en calme adulte.',
+    selection: buildSelection({
+      'composition': 'strong',
+      'surface-language': 'medium',
+      'corners-and-geometry': 'medium',
+      'typography': 'medium',
+      'color-and-contrast': 'medium',
+      'rhythm-and-spacing': 'medium',
+      'hierarchy-and-signposting': 'strong',
+      'imagery-and-illustration': 'medium',
+      'cta-language-and-shape': 'medium',
+      'motion-and-interaction-feel': 'medium',
+    }),
+  },
 ];
 
 export const defaultCriteriaSelection = criteriaPresets[0].selection;
