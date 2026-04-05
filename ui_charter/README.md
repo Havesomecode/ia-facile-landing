@@ -49,3 +49,5 @@ Shared review questions:
 - `src/content/`: shared text content and review criteria for comparable stories
 - `src/lab/`: shared Storybook overview and lab framing
 - `src/directions/`: isolated visual directions with their own notes and styling
+- `REVIEW_NOTES.md`: iteration-by-iteration steering decisions
+- `COMPOSITION_DIRECTION.md`: current page-architecture decision for IA Facile

@@ -20,6 +20,19 @@ const visualDirections = [
   },
 ];
 
+const criteriaHighlights = [
+  'Composition',
+  'Surface language',
+  'Corners and geometry',
+  'Typography',
+  'Color and contrast',
+  'Rhythm and spacing',
+  'Hierarchy and signposting',
+  'Imagery and illustration',
+  'CTA language and shape',
+  'Motion and interaction feel',
+];
+
 export function UiCharterOverview() {
   return (
     <main className="charter-shell">
@@ -70,6 +83,21 @@ export function UiCharterOverview() {
               <p className="charter-label">{direction.slug}</p>
               <h3>{direction.title}</h3>
               <p>{direction.summary}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="charter-section">
+        <div className="charter-section-heading">
+          <p className="charter-label">Steering criteria</p>
+          <h2>Dix criteres pour piloter les iterations</h2>
+        </div>
+        <div className="charter-direction-list">
+          {criteriaHighlights.map((criterion) => (
+            <article key={criterion} className="charter-direction-item">
+              <p className="charter-label">criterion</p>
+              <h3>{criterion}</h3>
             </article>
           ))}
         </div>
