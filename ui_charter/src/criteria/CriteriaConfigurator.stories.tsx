@@ -40,12 +40,24 @@ function fitControl(slug: string) {
   const criterion = getCriterion(slug);
 
   return {
+    type: {
+      name: 'enum',
+      value: [...fitOptions],
+    },
     control: {
       type: 'select',
       labels: Object.fromEntries(criterion.options.map((option) => [option.fit, option.name])),
     },
     options: fitOptions,
     description: criterion.question,
+    table: {
+      type: {
+        summary: 'strong | medium | weak',
+      },
+      defaultValue: {
+        summary: 'strong',
+      },
+    },
   } as const;
 }
 
@@ -70,9 +82,12 @@ function presetStory(slug: string): Story {
 
 const meta = {
   title: 'Criteria/Configurator',
-  component: CriteriaConfiguratorPage,
+  render: (args: CriteriaConfiguratorPageProps) => <CriteriaConfiguratorPage {...args} />,
   parameters: {
     layout: 'fullscreen',
+    options: {
+      showPanel: false,
+    },
     controls: {
       expanded: true,
     },
@@ -90,7 +105,7 @@ const meta = {
     ctaLanguageAndShape: fitControl('cta-language-and-shape'),
     motionAndInteractionFeel: fitControl('motion-and-interaction-feel'),
   },
-} satisfies Meta<typeof CriteriaConfiguratorPage>;
+} satisfies Meta<CriteriaConfiguratorPageProps>;
 
 export default meta;
 

@@ -6,6 +6,8 @@
   font-weight: 600;
   line-height: 1;
   letter-spacing: -0.03em;
+}
+
 .preview-lead,
 .preview-section p,
 .preview-side-copy,
@@ -15,10 +17,6 @@
 }
 
 .configurator-preview {
-  width: 100%;
-}
-
-.preview-site {
   --preview-bg: #f7f1e7;
   --preview-surface: transparent;
   --preview-panel: rgba(255, 251, 243, 0.72);
@@ -31,23 +29,35 @@
   --preview-section-gap: 2.2rem;
   --preview-label-opacity: 1;
   --preview-label-weight: 700;
-  --preview-section-padding: 1.2rem 0;
+  --preview-section-padding: 1.35rem;
   --preview-shadow: none;
   width: 100%;
   min-height: 100vh;
-  max-width: 92rem;
-  margin: 0 auto;
-  padding: 1rem;
-  border: 1px solid rgba(24, 32, 35, 0.12);
   background: var(--preview-bg);
   color: var(--preview-ink);
-  transition: background-color 160ms ease, color 160ms ease, border-color 160ms ease;
+  transition: background-color 160ms ease, color 160ms ease;
+}
+
+.preview-site {
+  width: 100%;
+  min-height: 100vh;
+  padding-bottom: 2rem;
+}
+
+.preview-topbar,
+.preview-hero,
+.preview-section,
+.preview-closing {
+  width: min(100%, 96rem);
+  margin: 0 auto;
+  padding-inline: clamp(1rem, 4vw, 3rem);
 }
 
 .preview-topbar {
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
+  padding-top: 1rem;
   padding-bottom: 0.85rem;
   border-bottom: 1px solid var(--preview-rule);
   font-size: 0.76rem;
@@ -59,10 +69,11 @@
 
 .preview-hero {
   display: grid;
-  grid-template-columns: minmax(0, 1.45fr) minmax(16rem, 0.82fr);
-  gap: var(--preview-section-gap);
+  grid-template-columns: minmax(0, 1.3fr) minmax(19rem, 0.95fr);
+  gap: clamp(1.6rem, 4vw, 3.2rem);
   align-items: start;
-  padding: 1.5rem 0 1.8rem;
+  padding-top: 2rem;
+  padding-bottom: 2.35rem;
   border-bottom: 1px solid var(--preview-rule);
 }
 
@@ -86,12 +97,12 @@
 }
 
 .preview-hero h2 {
-  max-width: 12ch;
-  font-size: clamp(2.6rem, 5vw, 4.8rem);
+  max-width: 11ch;
+  font-size: clamp(2.6rem, 4.4vw, 4.2rem);
 }
 
 .preview-lead {
-  max-width: 42rem;
+  max-width: 40rem;
   margin-top: 0.95rem;
   font-size: 1.06rem;
   line-height: 1.55;
@@ -122,10 +133,36 @@
 
 .preview-side-panel {
   display: grid;
-  gap: 0.9rem;
+  gap: 1.1rem;
   align-content: start;
-  padding-left: 1rem;
+  padding-left: 1.35rem;
   border-left: 1px solid var(--preview-rule);
+}
+
+.preview-side-copy {
+  max-width: 20rem;
+  font-size: 0.97rem;
+  line-height: 1.55;
+}
+
+.preview-side-points {
+  display: grid;
+  gap: 0.7rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.preview-side-points li {
+  padding-top: 0.7rem;
+  border-top: 1px solid var(--preview-rule);
+  color: var(--preview-muted);
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.preview-side-visual {
+  padding-top: 0.2rem;
 }
 
 .preview-section {
@@ -133,7 +170,7 @@
   grid-template-columns: 11.5rem minmax(0, 1fr);
   gap: var(--preview-section-gap);
   align-items: start;
-  padding: var(--preview-section-padding);
+  padding-block: var(--preview-section-padding);
   border-bottom: 1px solid var(--preview-rule);
 }
 
@@ -174,7 +211,8 @@
   grid-template-columns: minmax(0, 1.4fr) minmax(14rem, 0.8fr);
   gap: var(--preview-section-gap);
   align-items: end;
-  padding: 1.35rem 0 0.3rem;
+  padding-top: 1.5rem;
+  padding-bottom: 0.3rem;
 }
 
 .preview-diagram {
@@ -182,7 +220,7 @@
   grid-template-columns: 1.3rem 1fr 1.3rem 1fr 1.3rem;
   gap: 0.6rem;
   align-items: center;
-  min-height: 4.4rem;
+  min-height: 6rem;
 }
 
 .preview-diagram-node {
@@ -207,7 +245,7 @@
 }
 
 .preview-photo-frame {
-  min-height: 6rem;
+  min-height: 8rem;
   background:
     linear-gradient(135deg, rgba(24, 32, 35, 0.1), rgba(24, 32, 35, 0.03)),
     linear-gradient(90deg, rgba(24, 32, 35, 0.05), rgba(24, 32, 35, 0.01));
@@ -221,7 +259,7 @@
 
 .preview-atmosphere {
   position: relative;
-  min-height: 6rem;
+  min-height: 8rem;
   overflow: hidden;
   background:
     radial-gradient(circle at 20% 20%, rgba(123, 102, 218, 0.2), transparent 36%),
@@ -322,12 +360,12 @@
   box-shadow: 0 18px 28px rgba(24, 32, 35, 0.06);
 }
 
-.configurator-preview[data-corners-and-geometry='medium'] .preview-site {
+.configurator-preview[data-corners-and-geometry='medium'] {
   --preview-radius: 0.55rem;
   --preview-button-radius: 0.55rem;
 }
 
-.configurator-preview[data-corners-and-geometry='weak'] .preview-site {
+.configurator-preview[data-corners-and-geometry='weak'] {
   --preview-radius: 1.15rem;
   --preview-button-radius: 999px;
 }
@@ -354,7 +392,7 @@
   border-radius: var(--preview-radius);
 }
 
-.configurator-preview[data-typography='medium'] .preview-site {
+.configurator-preview[data-typography='medium'] {
   font-family: ui-sans-serif, system-ui, sans-serif;
 }
 
@@ -379,35 +417,35 @@
   font-size: 1rem;
 }
 
-.configurator-preview[data-color-and-contrast='medium'] .preview-site {
+.configurator-preview[data-color-and-contrast='medium'] {
   --preview-bg: #edf2f1;
   --preview-panel: rgba(255, 255, 255, 0.84);
   --preview-rule: rgba(37, 61, 63, 0.16);
   --preview-accent: #253d3f;
 }
 
-.configurator-preview[data-color-and-contrast='weak'] .preview-site {
+.configurator-preview[data-color-and-contrast='weak'] {
   --preview-bg: linear-gradient(180deg, #eef5ff, #f6eefe);
   --preview-panel: rgba(255, 255, 255, 0.62);
   --preview-rule: rgba(89, 109, 168, 0.18);
   --preview-accent: #6f62c8;
 }
 
-.configurator-preview[data-rhythm-and-spacing='medium'] .preview-site {
+.configurator-preview[data-rhythm-and-spacing='medium'] {
   --preview-section-gap: 2.9rem;
-  --preview-section-padding: 1.55rem 0;
+  --preview-section-padding: 1.55rem;
 }
 
-.configurator-preview[data-rhythm-and-spacing='weak'] .preview-site {
+.configurator-preview[data-rhythm-and-spacing='weak'] {
   --preview-section-gap: 3.6rem;
-  --preview-section-padding: 2rem 0;
+  --preview-section-padding: 2rem;
 }
 
-.configurator-preview[data-hierarchy-and-signposting='medium'] .preview-site {
+.configurator-preview[data-hierarchy-and-signposting='medium'] {
   --preview-label-opacity: 0.52;
 }
 
-.configurator-preview[data-hierarchy-and-signposting='weak'] .preview-site {
+.configurator-preview[data-hierarchy-and-signposting='weak'] {
   --preview-label-opacity: 0;
   --preview-label-weight: 500;
 }
@@ -457,7 +495,7 @@
   box-shadow: 0 16px 28px rgba(74, 94, 180, 0.12);
 }
 
-.configurator-preview[data-reference='pour-les-nuls-reference'] .preview-site {
+.configurator-preview[data-reference='pour-les-nuls-reference'] {
   --preview-bg: #fff7c9;
   --preview-panel: rgba(255, 244, 153, 0.68);
   --preview-rule: rgba(22, 22, 22, 0.24);

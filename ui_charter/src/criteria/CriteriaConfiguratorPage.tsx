@@ -107,6 +107,11 @@ export function CriteriaConfiguratorPage(props: CriteriaConfiguratorPageProps) {
   const selection = getSelectionFromProps(props);
   const activePreset = criteriaPresets.find((preset) => areSelectionsEqual(selection, preset.selection)) ?? null;
   const ctaCopy = getCtaCopy(selection['cta-language-and-shape']);
+  const heroSupportPoints = [
+    iaFacileDemoContent.reassurance.supportingPoints?.[0],
+    iaFacileDemoContent.firstStep.supportingPoints?.[0],
+    iaFacileDemoContent.trust.supportingPoints?.[2],
+  ].filter((point): point is string => Boolean(point));
 
   return (
     <main
@@ -149,7 +154,14 @@ export function CriteriaConfiguratorPage(props: CriteriaConfiguratorPageProps) {
           <aside className="preview-side-panel">
             <p className="preview-label">Apercu</p>
             <p className="preview-side-copy">Une premiere impression de la promesse avant meme de lire tout le contenu.</p>
-            <HeroVisual fit={selection['imagery-and-illustration']} />
+            <ul className="preview-side-points">
+              {heroSupportPoints.map((point) => (
+                <li key={point}>{point}</li>
+              ))}
+            </ul>
+            <div className="preview-side-visual">
+              <HeroVisual fit={selection['imagery-and-illustration']} />
+            </div>
           </aside>
         </section>
 
