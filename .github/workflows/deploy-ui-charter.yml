@@ -1,0 +1,45 @@
+name: Deploy ui_charter to Vercel
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'ui_charter/**'
+      - '.github/workflows/deploy-ui-charter.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    working-directory: ui_charter
+
+jobs:
+  deploy-production:
+    runs-on: ubuntu-latest
+    env:
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      VERCEL_ORG_ID: team_lpN3ikyEWpXFfrV53eNYNWQd
+      VERCEL_PROJECT_ID: prj_daM9CRs4kRytLf8cXB8QRJOketAl
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+
+      - name: Pull Vercel settings
+        run: vercel pull --yes --environment=production --token="$VERCEL_TOKEN"
+
+      - name: Build Storybook
+        run: vercel build --prod --token="$VERCEL_TOKEN"
+
+      - name: Deploy to production
+        run: vercel deploy --prebuilt --prod --token="$VERCEL_TOKEN"
